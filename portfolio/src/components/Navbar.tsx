@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { Sun, Moon } from 'lucide-react';
 
 const Nav = styled.nav`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
@@ -40,7 +40,7 @@ const NavLinks = styled.div`
   align-items: center;
 `;
 
-const NavLink = styled(Link)`
+const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.navbarText};
   font-family: ${({ theme }) => theme.fonts.secondary};
@@ -72,17 +72,25 @@ const NavLink = styled(Link)`
 const ThemeToggle = styled.button`
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.navbarText};
   cursor: pointer;
   padding: ${({ theme }) => theme.spacing.xs};
+  color: ${({ theme }) => theme.colors.navbarText};
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.3s ease;
-  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.overlay};
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -92,14 +100,14 @@ const Navbar: React.FC = () => {
   return (
     <Nav>
       <NavContainer>
-        <Logo to="/">Prakhar Kabra</Logo>
+        <Logo to="/">PK</Logo>
         <NavLinks>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLinkStyled to="/">Home</NavLinkStyled>
+          <NavLinkStyled to="/about">About</NavLinkStyled>
+          <NavLinkStyled to="/projects">Projects</NavLinkStyled>
+          <NavLinkStyled to="/contact">Contact</NavLinkStyled>
           <ThemeToggle onClick={toggleTheme} aria-label="Toggle theme">
-            {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </ThemeToggle>
         </NavLinks>
       </NavContainer>

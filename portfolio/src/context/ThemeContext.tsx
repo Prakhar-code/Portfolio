@@ -70,7 +70,7 @@ export const darkTheme = {
   },
 };
 
-type Theme = typeof lightTheme;
+// type Theme = typeof lightTheme;
 
 interface ThemeContextType {
   isDark: boolean;
